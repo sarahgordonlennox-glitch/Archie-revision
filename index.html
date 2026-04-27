@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Y7 Biology Revision Quiz</title>
+<style>
+  :root {
+    --accent-900: #0f3d2e;
+    --accent-700: #1f6f54;
+    --accent-500: #2fa97a;
+    --accent-100: #e3f4ec;
+    --accent-50:  #f1faf6;
+    --bg:         #f4f7f5;
+
+    --cells-900: #0f3d2e;
+    --cells-700: #1f6f54;
+    --cells-500: #2fa97a;
+    --cells-100: #e3f4ec;
+    --cells-50:  #f1faf6;
+
+    --body-900:  #0c2d4a;
+    --body-700:  #1d5a8e;
+    --body-500:  #2f8fd9;
+    --body-100:  #dceefb;
+    --body-50:   #eef6fd;
+
+    --red-500:   #e0524a;
+    --red-100:   #fde6e4;
+    --amber-500: #f5a623;
+    --amber-100: #fff3da;
+    --grey-900:  #1a1a1a;
+    --grey-600:  #5b6470;
+    --grey-300:  #d6dadf;
+    --grey-100:  #f3f5f7;
+    --white:     #ffffff;
+  }
+
+  body.theme-cells {
+    --accent-900: var(--cells-900);
+    --accent-700: var(--cells-700);
+    --accent-500: var(--cells-500);
+    --accent-100: var(--cells-100);
+    --accent-50:  var(--cells-50);
+    --bg:         var(--cells-50);
+  }
+  body.theme-body {
+    --accent-900: var(--body-900);
+    --accent-700: var(--body-700);
+    --accent-500: var(--body-500);
+    --accent-100: var(--body-100);
+    --accent-50:  var(--body-50);
+    --bg:         var(--body-50);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--grey-900);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    transition: background 0.3s ease;
+  }
+
+  .app {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 4px 20px 4px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--accent-900);
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+  }
+  .logo span { color: var(--accent-500); }
+
+  .streak-pill {
+    background: var(--white);
+    border: 1px solid var(--grey-300);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--grey-900);
+  }
+  .streak-pill.active {
+    background: var(--amber-100);
+    border-color: var(--amber-500);
+    color: var(--grey-900);
+  }
+  .streak-pill .label {
+    font-weight: 500;
+    color: var(--grey-600);
+    font-size: 0.85rem;
+  }
+  .streak-pill.active .label { color: var(--grey-900); }
+
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(15, 61, 46, 0.06);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    margin: 0 0 8px 0;
+    color: var(--accent-900);
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 0 0 12px 0;
+    color: var(--accent-900);
+  }
+  p { margin: 0 0 12px 0; color: var(--grey-600); }
+  p.lead { color: var(--grey-900); font-size: 1.05rem; }
+
+  /* Home */
+  .home-intro {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .home-intro h1 {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+  }
+  .home-intro p { font-size: 0.95rem; }
+
+  .streak-banner {
+    background: linear-gradient(135deg, #fff8e6, #ffe7b8);
+    border: 1px solid var(--amber-500);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .streak-banner.zero {
+    background: var(--white);
+    border-color: var(--grey-300);
+  }
+  .streak-banner-icon { font-size: 1.8rem; }
+  .streak-banner-text { flex: 1; }
+  .streak-banner-num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--grey-900);
+    line-height: 1;
+  }
+  .streak-banner-msg {
+    font-size: 0.85rem;
+    color: var(--grey-600);
+    margin-top: 2px;
+  }
+
+  .topic-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .topic-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(15, 61, 46, 0.06);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    width: 100%;
+  }
+  .topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(15, 61, 46, 0.10);
+  }
+  .topic-card.cells:hover { border-color: var(--cells-500); }
+  .topic-card.body:hover  { border-color: var(--body-500); }
+
+  .topic-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .topic-icon { font-size: 1.8rem; line-height: 1; }
+  .topic-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .topic-card.cells .topic-card-title { color: var(--cells-900); }
+  .topic-card.body .topic-card-title  { color: var(--body-900); }
+
+  .topic-card-desc {
+    font-size: 0.88rem;
+    color: var(--grey-600);
+    margin-bottom: 14px;
+  }
+
+  .topic-card-stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .topic-stat {
+    flex: 1;
+    text-align: center;
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+  .topic-card.cells .topic-stat { background: var(--cells-50); }
+  .topic-card.body .topic-stat  { background: var(--body-50); }
+  .topic-stat-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .topic-card.cells .topic-stat-value { color: var(--cells-900); }
+  .topic-card.body .topic-stat-value  { color: var(--body-900); }
+  .topic-stat-label {
+    font-size: 0.72rem;
+    color: var(--grey-600);
+    margin-top: 4px;
+  }
+
+  .topic-card-status {
+    font-size: 0.85rem;
+    color: var(--grey-600);
+    margin-bottom: 12px;
+  }
+  .topic-card-status.done {
+    color: var(--accent-700);
+    font-weight: 600;
+  }
+  .topic-card.cells .topic-card-status.done { color: var(--cells-700); }
+  .topic-card.body  .topic-card-status.done { color: var(--body-700); }
+
+  .topic-card-cta {
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    width: 100%;
+    pointer-events: none;
+    color: var(--white);
+  }
+  .topic-card.cells .topic-card-cta { background: var(--cells-500); }
+  .topic-card.body  .topic-card-cta { background: var(--body-500); }
+  .topic-card:hover .topic-card-cta { filter: brightness(1.06); }
+
+  /* Quiz */
+  .progress-bar {
+    height: 8px;
+    background: var(--grey-100);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent-500);
+    transition: width 0.3s ease;
+    border-radius: 999px;
+  }
+  .progress-text {
+    font-size: 0.85rem;
+    color: var(--grey-600);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .question-topic {
+    display: inline-block;
+    background: var(--accent-100);
+    color: var(--accent-700);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .question-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--grey-900);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    background: var(--white);
+    border: 2px solid var(--grey-300);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.98rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    color: var(--grey-900);
+  }
+  .option:hover:not(:disabled) {
+    border-color: var(--accent-500);
+    background: var(--accent-50);
+  }
+  .option:disabled { cursor: default; }
+  .option.correct {
+    border-color: var(--accent-500);
+    background: var(--accent-100);
+    color: var(--accent-900);
+    font-weight: 600;
+  }
+  .option.incorrect {
+    border-color: var(--red-500);
+    background: var(--red-100);
+    color: var(--red-500);
+  }
+
+  .feedback {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 12px;
+    background: var(--accent-50);
+    border-left: 4px solid var(--accent-500);
+    font-size: 0.95rem;
+  }
+  .feedback.wrong {
+    background: var(--red-100);
+    border-left-color: var(--red-500);
+  }
+  .feedback strong { display: block; margin-bottom: 4px; }
+
+  .next-btn-wrap { margin-top: 16px; }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.1s ease, background 0.15s ease;
+    font-family: inherit;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--accent-500);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--accent-700); }
+  .btn-secondary {
+    background: var(--grey-100);
+    color: var(--grey-900);
+    border: 1px solid var(--grey-300);
+  }
+  .btn-secondary:hover { background: var(--grey-300); }
+
+  /* Results */
+  .score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--accent-100);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 12px auto 16px auto;
+    border: 6px solid var(--accent-500);
+  }
+  .score-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-900);
+    line-height: 1;
+  }
+  .score-label {
+    font-size: 0.85rem;
+    color: var(--grey-600);
+    margin-top: 4px;
+  }
+  .results-msg {
+    text-align: center;
+    color: var(--grey-900);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .streak-update {
+    text-align: center;
+    background: var(--amber-100);
+    border: 1px solid var(--amber-500);
+    color: var(--grey-900);
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin: 12px 0 4px 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .review-list { margin-top: 12px; }
+  .review-item {
+    background: var(--accent-50);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+  }
+  .review-item .q {
+    font-weight: 600;
+    color: var(--grey-900);
+    margin-bottom: 4px;
+  }
+  .review-item .ans { color: var(--grey-600); }
+  .review-item .ans.your {
+    color: var(--red-500);
+    text-decoration: line-through;
+  }
+  .review-item .ans.correct {
+    color: var(--accent-700);
+    font-weight: 600;
+  }
+
+  .button-group { display: flex; gap: 10px; margin-top: 16px; }
+  .button-group .btn { flex: 1; }
+
+  .small-link {
+    background: none;
+    border: none;
+    color: var(--grey-600);
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    padding: 4px 8px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--grey-600);
+    font-size: 0.8rem;
+    padding: 16px 0;
+    margin-top: auto;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  @media (max-width: 480px) {
+    .app { padding: 12px; }
+    .card { padding: 18px; }
+    h1 { font-size: 1.4rem; }
+    .question-text { font-size: 1.05rem; }
+    .topic-card { padding: 16px; }
+    .topic-card-title { font-size: 1.05rem; }
+    .topic-stat-value { font-size: 1.05rem; }
+    .topic-icon { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <button class="logo" onclick="goHome()">QPCS <span>Bio Quiz</span></button>
+    <div id="streakPill" class="streak-pill">
+      🔥 <span id="streakNum">0</span> <span class="label">day streak</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME / TOPIC SELECT -->
+    <section id="home" class="screen active">
+      <div class="home-intro">
+        <h1>Year 7 Biology Revision</h1>
+        <p>25 questions a day. Complete either quiz to keep your streak alive!</p>
+      </div>
+
+      <div id="streakBanner" class="streak-banner zero">
+        <div class="streak-banner-icon">🔥</div>
+        <div class="streak-banner-text">
+          <div class="streak-banner-num"><span id="bannerStreak">0</span> day streak</div>
+          <div class="streak-banner-msg" id="bannerMsg">Complete a quiz today to start your streak!</div>
+        </div>
+      </div>
+
+      <div class="topic-cards">
+
+        <!-- Cells card -->
+        <button class="topic-card cells" onclick="startQuiz('cells')">
+          <div class="topic-card-header">
+            <div class="topic-icon">🔬</div>
+            <div class="topic-card-title">B1-1: Cells</div>
+          </div>
+          <div class="topic-card-desc">
+            Observing cells, plant &amp; animal cells, specialised cells, diffusion, unicellular organisms
+          </div>
+          <div class="topic-card-stats">
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="cellsAnswered">0</div>
+              <div class="topic-stat-label">Answered</div>
+            </div>
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="cellsAccuracy">—</div>
+              <div class="topic-stat-label">Accuracy</div>
+            </div>
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="cellsTodayScore">—</div>
+              <div class="topic-stat-label">Today</div>
+            </div>
+          </div>
+          <div class="topic-card-status" id="cellsStatus">📅 Today's quiz not yet completed.</div>
+          <div class="topic-card-cta">Start Cells quiz →</div>
+        </button>
+
+        <!-- Body Systems card -->
+        <button class="topic-card body" onclick="startQuiz('body')">
+          <div class="topic-card-header">
+            <div class="topic-icon">🫁</div>
+            <div class="topic-card-title">B1-2: Body Systems</div>
+          </div>
+          <div class="topic-card-desc">
+            Levels of organisation, gas exchange, breathing, skeleton, joints, muscles
+          </div>
+          <div class="topic-card-stats">
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="bodyAnswered">0</div>
+              <div class="topic-stat-label">Answered</div>
+            </div>
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="bodyAccuracy">—</div>
+              <div class="topic-stat-label">Accuracy</div>
+            </div>
+            <div class="topic-stat">
+              <div class="topic-stat-value" id="bodyTodayScore">—</div>
+              <div class="topic-stat-label">Today</div>
+            </div>
+          </div>
+          <div class="topic-card-status" id="bodyStatus">📅 Today's quiz not yet completed.</div>
+          <div class="topic-card-cta">Start Body Systems quiz →</div>
+        </button>
+
+      </div>
+
+      <button class="small-link" onclick="resetAllData()" style="display:block;margin:20px auto 0 auto;">Reset all progress</button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="quiz" class="screen">
+      <div class="card">
+        <div class="progress-text">
+          <span>Question <span id="qNum">1</span> of <span id="qTotal">25</span></span>
+          <span><span id="qScore">0</span> correct</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="question-topic" id="qTopic">B1.1.1</div>
+        <div class="question-text" id="qText">Question text goes here.</div>
+        <div class="options" id="optionsList"></div>
+        <div id="feedbackBox"></div>
+        <div class="next-btn-wrap" id="nextBtnWrap" style="display:none;">
+          <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next question</button>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="confirmExit()">Exit to home</button>
+    </section>
+
+    <!-- RESULTS SCREEN -->
+    <section id="results" class="screen">
+      <div class="card">
+        <h2 style="text-align:center;" id="resultsTitle">Quiz complete!</h2>
+        <div class="score-circle">
+          <div class="score-num" id="scoreNum">0/25</div>
+          <div class="score-label" id="scorePct">0%</div>
+        </div>
+        <div class="results-msg" id="resultsMsg"></div>
+        <div id="streakUpdate" class="streak-update" style="display:none;"></div>
+
+        <div id="reviewSection" style="display:none;">
+          <h2 style="font-size:1.05rem;">Questions to review</h2>
+          <div class="review-list" id="reviewList"></div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="goHome()">Home</button>
+          <button class="btn btn-primary" id="tryAgainBtn" onclick="retryQuiz()">Try again</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Year 7 Biology · QPCS · Activate! Science syllabus
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   TOPIC CONFIG
+   ============================================================ */
+const TOPICS = {
+  cells: { name: 'B1-1: Cells', emoji: '🔬', themeClass: 'theme-cells' },
+  body:  { name: 'B1-2: Body Systems', emoji: '🫁', themeClass: 'theme-body' },
+};
+
+/* ============================================================
+   QUESTION BANKS
+   ============================================================ */
+const QUESTIONS = {
+cells: [
+  { id:1, sub:'B1.1.1 Observing cells', q:'Who first observed and named cells in 1665?',
+    options:['Robert Hooke','Charles Darwin','Louis Pasteur','Isaac Newton'], correct:0,
+    explain:'Robert Hooke looked at a thin slice of cork through his microscope and called the tiny boxes he saw "cells", because they reminded him of monks\' rooms.' },
+  { id:2, sub:'B1.1.1 Observing cells', q:'What did Robert Hooke look at to first see cells?',
+    options:['A drop of pond water','A slice of cork','A piece of skin','A leaf'], correct:1,
+    explain:'Hooke examined a thin slice of cork (from oak bark) and saw the boxy walls of dead plant cells.' },
+  { id:3, sub:'B1.1.1 Observing cells', q:'Which instrument is used to observe cells?',
+    options:['Telescope','Stethoscope','Microscope','Thermometer'], correct:2,
+    explain:'A microscope uses lenses to magnify very small objects so we can see cells.' },
+  { id:4, sub:'B1.1.1 Observing cells', q:'What is the function of the eyepiece lens on a microscope?',
+    options:['To hold the slide','To shine light through the specimen','To magnify the image for the observer','To focus the image'], correct:2,
+    explain:'The eyepiece (the lens you look through) further magnifies the image produced by the objective lens.' },
+  { id:5, sub:'B1.1.1 Observing cells', q:'If the eyepiece magnifies x10 and the objective lens magnifies x40, what is the total magnification?',
+    options:['x50','x400','x4','x4000'], correct:1,
+    explain:'Total magnification = eyepiece × objective = 10 × 40 = 400 times.' },
+  { id:6, sub:'B1.1.1 Observing cells', q:'Why are stains often used when preparing cells for a microscope slide?',
+    options:['To kill the cells','To make cells and their parts more visible','To make cells bigger','To stop them moving'], correct:1,
+    explain:'Most cells are see-through. Stains add colour so structures like the nucleus stand out.' },
+  { id:7, sub:'B1.1.1 Observing cells', q:'What is the part of the microscope where the slide is placed called?',
+    options:['Stage','Mount','Lens','Tube'], correct:0,
+    explain:'The flat platform that holds the slide is called the stage.' },
+  { id:8, sub:'B1.1.1 Observing cells', q:'What does an electron microscope use instead of light?',
+    options:['Sound waves','Magnets','Beams of electrons','X-rays'], correct:2,
+    explain:'Electron microscopes fire beams of electrons at the specimen, allowing much higher magnification than light microscopes.' },
+  { id:9, sub:'B1.1.1 Observing cells', q:'Which type of microscope generally gives the highest magnification?',
+    options:['Light microscope','Electron microscope','Hand lens','Telescope'], correct:1,
+    explain:'Electron microscopes can magnify over 1,000,000 times — far more than light microscopes.' },
+
+  { id:10, sub:'B1.1.2 Plant and animal cells', q:'Which cell structure controls the activities of the cell?',
+    options:['Cytoplasm','Mitochondria','Nucleus','Cell membrane'], correct:2,
+    explain:'The nucleus contains DNA and controls all the cell\'s activities.' },
+  { id:11, sub:'B1.1.2 Plant and animal cells', q:'Where do most chemical reactions in a cell take place?',
+    options:['Nucleus','Cell wall','Mitochondria','Cytoplasm'], correct:3,
+    explain:'The cytoplasm is the jelly-like substance inside the cell where most reactions happen.' },
+  { id:12, sub:'B1.1.2 Plant and animal cells', q:'What is the function of the cell membrane?',
+    options:['Stores genetic information','Controls what enters and leaves the cell','Releases energy','Supports the cell'], correct:1,
+    explain:'The cell membrane is a thin barrier that controls which substances can enter or leave the cell.' },
+  { id:13, sub:'B1.1.2 Plant and animal cells', q:'Which structure releases energy from food in a process called respiration?',
+    options:['Ribosomes','Mitochondria','Chloroplasts','Nucleus'], correct:1,
+    explain:'Mitochondria are where aerobic respiration happens, releasing energy from glucose.' },
+  { id:14, sub:'B1.1.2 Plant and animal cells', q:'Which structures in a cell make proteins?',
+    options:['Ribosomes','Vacuole','Cell wall','Mitochondria'], correct:0,
+    explain:'Ribosomes are tiny structures in the cytoplasm that make proteins.' },
+  { id:15, sub:'B1.1.2 Plant and animal cells', q:'Which of these is found in plant cells but NOT animal cells?',
+    options:['Nucleus','Cell membrane','Cell wall','Mitochondria'], correct:2,
+    explain:'Plant cells have a cell wall (made of cellulose) for support; animal cells do not.' },
+  { id:16, sub:'B1.1.2 Plant and animal cells', q:'What is the function of chloroplasts?',
+    options:['To store water','To carry out photosynthesis','To control the cell','To make proteins'], correct:1,
+    explain:'Chloroplasts contain the green pigment chlorophyll, which absorbs light energy for photosynthesis.' },
+  { id:17, sub:'B1.1.2 Plant and animal cells', q:'What is the function of the cell wall in plant cells?',
+    options:['Controls what enters the cell','Supports the cell and gives it shape','Releases energy','Carries out photosynthesis'], correct:1,
+    explain:'The cell wall is made of strong cellulose and gives the plant cell support and a definite shape.' },
+  { id:18, sub:'B1.1.2 Plant and animal cells', q:'What does the permanent vacuole in a plant cell contain?',
+    options:['Air','Cell sap','Blood','Chlorophyll'], correct:1,
+    explain:'The vacuole is filled with cell sap (a watery solution of sugars and salts), which helps support the cell.' },
+
+  { id:19, sub:'B1.1.3 Specialised cells', q:'What is a specialised cell?',
+    options:['A cell that can do anything','A cell with adaptations to perform a specific function','The smallest type of cell','A cell that does not have a nucleus'], correct:1,
+    explain:'Specialised cells have a particular shape, size or features that suit one specific job.' },
+  { id:20, sub:'B1.1.3 Specialised cells', q:'What is the main function of red blood cells?',
+    options:['Fight infection','Carry oxygen around the body','Send nerve signals','Digest food'], correct:1,
+    explain:'Red blood cells contain haemoglobin which binds to oxygen and transports it from the lungs to body cells.' },
+  { id:21, sub:'B1.1.3 Specialised cells', q:'Why do red blood cells NOT have a nucleus?',
+    options:['So they can divide quickly','To make more room for haemoglobin so they can carry more oxygen','So they can fit through small spaces','Because they are bacteria'], correct:1,
+    explain:'Removing the nucleus leaves more room inside the cell for haemoglobin, allowing it to carry more oxygen.' },
+  { id:22, sub:'B1.1.3 Specialised cells', q:'What feature helps a sperm cell swim?',
+    options:['A long tail (flagellum)','Cilia','A cell wall','Many vacuoles'], correct:0,
+    explain:'A sperm cell has a long tail that whips back and forth, propelling it towards the egg.' },
+  { id:23, sub:'B1.1.3 Specialised cells', q:'Why does a sperm cell have many mitochondria?',
+    options:['To carry oxygen','To make protein','To release energy needed for swimming','To store food'], correct:2,
+    explain:'Swimming a long way takes lots of energy, so sperm have many mitochondria to release that energy by respiration.' },
+  { id:24, sub:'B1.1.3 Specialised cells', q:'Why do nerve cells have long extensions?',
+    options:['To absorb water','To carry electrical signals long distances quickly','To make food','To protect the body'], correct:1,
+    explain:'Nerve cells (neurones) have long axons so signals can travel quickly between distant parts of the body.' },
+  { id:25, sub:'B1.1.3 Specialised cells', q:'How is a root hair cell adapted to absorb water from the soil?',
+    options:['It has many chloroplasts','It has a long extension that gives a large surface area','It has a tail','It has no cell wall'], correct:1,
+    explain:'The hair-like extension increases the surface area, so more water and minerals can be absorbed.' },
+  { id:26, sub:'B1.1.3 Specialised cells', q:'Why do palisade cells in leaves contain many chloroplasts?',
+    options:['To store water','To absorb a lot of light for photosynthesis','To make the leaf green','To release energy'], correct:1,
+    explain:'Palisade cells are at the top of leaves where light hits first; lots of chloroplasts means lots of photosynthesis.' },
+  { id:27, sub:'B1.1.3 Specialised cells', q:'What do ciliated epithelial cells do in the airways?',
+    options:['Absorb oxygen','Use their tiny hair-like cilia to sweep mucus away','Make red blood cells','Produce energy'], correct:1,
+    explain:'The cilia (tiny hairs) beat to move mucus, dust and microbes up out of the lungs.' },
+
+  { id:28, sub:'B1.1.4 Movement of substances', q:'What is diffusion?',
+    options:['The movement of particles from a low to a high concentration','The movement of particles from a high to a low concentration','The movement of water only','The movement of cells'], correct:1,
+    explain:'Diffusion is the net movement of particles from where they are more concentrated to where they are less concentrated.' },
+  { id:29, sub:'B1.1.4 Movement of substances', q:'In which direction does diffusion happen?',
+    options:['From high concentration to low concentration','From low concentration to high concentration','In a circle','From cold to hot only'], correct:0,
+    explain:'Particles spread out, moving down a concentration gradient — from high to low concentration.' },
+  { id:30, sub:'B1.1.4 Movement of substances', q:'What is a concentration gradient?',
+    options:['A type of cell','The difference in concentration between two areas','A graph showing concentration','A measurement of temperature'], correct:1,
+    explain:'The concentration gradient is the difference in concentration between two regions — the steeper it is, the faster diffusion happens.' },
+  { id:31, sub:'B1.1.4 Movement of substances', q:'Which gas moves INTO body cells by diffusion?',
+    options:['Carbon dioxide','Nitrogen','Oxygen','Hydrogen'], correct:2,
+    explain:'Cells use oxygen for respiration, so oxygen diffuses into them from the blood.' },
+  { id:32, sub:'B1.1.4 Movement of substances', q:'Which substance moves OUT of body cells by diffusion?',
+    options:['Carbon dioxide','Oxygen','Glucose','Water only'], correct:0,
+    explain:'Carbon dioxide is a waste product of respiration and diffuses out of cells into the blood.' },
+  { id:33, sub:'B1.1.4 Movement of substances', q:'Which factor INCREASES the rate of diffusion?',
+    options:['Lower temperature','A bigger concentration gradient','A smaller surface area','A thicker membrane'], correct:1,
+    explain:'A steeper (bigger) concentration gradient, higher temperature, or larger surface area all speed up diffusion.' },
+  { id:34, sub:'B1.1.4 Movement of substances', q:'Why do small cells exchange substances faster than large cells?',
+    options:['They have a larger surface area to volume ratio','They have more nuclei','They contain more DNA','They have thicker membranes'], correct:0,
+    explain:'Smaller cells have a bigger surface area compared to their volume, making diffusion in and out more efficient.' },
+  { id:35, sub:'B1.1.4 Movement of substances', q:'Why do cells need diffusion?',
+    options:['To grow bigger','To take in nutrients and remove waste','To produce light','To split in half'], correct:1,
+    explain:'Diffusion lets useful substances (like oxygen and glucose) enter and waste (like CO₂) leave the cell.' },
+  { id:36, sub:'B1.1.4 Movement of substances', q:'What is needed for diffusion to take place?',
+    options:['Energy from respiration','A concentration gradient','A pump','A membrane'], correct:1,
+    explain:'Diffusion is a passive process — it just needs a difference in concentration. No energy from the cell is required.' },
+
+  { id:37, sub:'B1.1.5 Unicellular organisms', q:'What does "unicellular" mean?',
+    options:['Made of only one cell','Made of many cells','A type of plant','A very large organism'], correct:0,
+    explain:'"Uni" means one — a unicellular organism is made of just a single cell.' },
+  { id:38, sub:'B1.1.5 Unicellular organisms', q:'Which of these is a unicellular organism?',
+    options:['A frog','An oak tree','An Amoeba','A jellyfish'], correct:2,
+    explain:'Amoeba, bacteria and yeast are all unicellular — their entire body is one cell.' },
+  { id:39, sub:'B1.1.5 Unicellular organisms', q:'How does an Amoeba move?',
+    options:['By using a long tail','By changing the shape of its body to form pseudopods','By using cilia','By rolling'], correct:1,
+    explain:'An Amoeba pushes out parts of its cell to form "false feet" (pseudopods) and slowly flows along.' },
+  { id:40, sub:'B1.1.5 Unicellular organisms', q:'How does Euglena make its food?',
+    options:['By hunting other cells','By photosynthesis (it has chloroplasts)','By absorbing food from soil','It does not need food'], correct:1,
+    explain:'Euglena contains chloroplasts and can photosynthesise like a plant when there is enough light.' },
+  { id:41, sub:'B1.1.5 Unicellular organisms', q:'About how big is a typical bacterium?',
+    options:['A few millimetres','A few micrometres','A few centimetres','A few metres'], correct:1,
+    explain:'Most bacteria are 1 to 5 micrometres long — much too small to see without a microscope.' },
+  { id:42, sub:'B1.1.5 Unicellular organisms', q:'Which is a feature of unicellular organisms?',
+    options:['They have many specialised tissues','They carry out all life processes in one cell','They cannot reproduce','They are always green'], correct:1,
+    explain:'A single cell has to do everything — feed, move, reproduce, get rid of waste — all by itself.' },
+  { id:43, sub:'B1.1.5 Unicellular organisms', q:'What is the term for organisms made of many cells?',
+    options:['Single-cell','Multicellular','Microscopic','Unicellular'], correct:1,
+    explain:'"Multi" means many — multicellular organisms are made of many cells working together.' },
+  { id:44, sub:'B1.1.5 Unicellular organisms', q:'Which of these is a unicellular fungus?',
+    options:['Yeast','Mushroom','Mould','Lichen'], correct:0,
+    explain:'Yeast is a single-celled fungus, used in baking and brewing.' },
+  { id:45, sub:'B1.1.5 Unicellular organisms', q:'Where can unicellular organisms be found?',
+    options:['Only in oceans','Only inside other living things','Almost everywhere — water, soil, air, and inside other organisms','Only in hot places'], correct:2,
+    explain:'Unicellular organisms (especially bacteria) live in nearly every habitat on Earth, including extreme ones.' },
+],
+
+body: [
+  { id:1, sub:'B1.2.1 Levels of organisation', q:'What is the smallest unit of life?',
+    options:['Atom','Tissue','Cell','Organ'], correct:2,
+    explain:'The cell is the basic building block of all living things.' },
+  { id:2, sub:'B1.2.1 Levels of organisation', q:'What is a group of similar cells working together called?',
+    options:['An organism','A tissue','An organ','A cell colony'], correct:1,
+    explain:'A tissue is a group of similar cells that all do the same job, e.g. muscle tissue.' },
+  { id:3, sub:'B1.2.1 Levels of organisation', q:'What is an organ?',
+    options:['A single cell','A group of different tissues working together to do a job','A whole organism','A type of bacteria'], correct:1,
+    explain:'Organs (like the heart) are made of several tissues that work together for a particular function.' },
+  { id:4, sub:'B1.2.1 Levels of organisation', q:'What is an organ system?',
+    options:['One organ','A group of organs working together','A group of cells','A group of organisms'], correct:1,
+    explain:'An organ system is a set of organs that work together — e.g. the digestive system includes stomach, intestines and liver.' },
+  { id:5, sub:'B1.2.1 Levels of organisation', q:'Which is the correct order of organisation, smallest to largest?',
+    options:['Cell → tissue → organ → organ system → organism','Organ → cell → tissue → organism','Tissue → cell → organism → organ','Organism → organ → tissue → cell'], correct:0,
+    explain:'Cells make tissues, tissues make organs, organs make organ systems, and systems make a whole organism.' },
+  { id:6, sub:'B1.2.1 Levels of organisation', q:'Which of these is an organ?',
+    options:['Muscle cell','Blood','Heart','Skin cell'], correct:2,
+    explain:'The heart is an organ — it is made of several tissues working together to pump blood.' },
+  { id:7, sub:'B1.2.1 Levels of organisation', q:'Muscle is an example of which level of organisation?',
+    options:['Cell','Tissue','Organ','Organ system'], correct:1,
+    explain:'A muscle is a tissue — many similar muscle cells working together.' },
+  { id:8, sub:'B1.2.1 Levels of organisation', q:'The digestive system is an example of which level of organisation?',
+    options:['Tissue','Organ','Organ system','Organism'], correct:2,
+    explain:'It is a group of organs (mouth, stomach, intestines, liver…) that work together — an organ system.' },
+
+  { id:9, sub:'B1.2.2 Gas exchange', q:'Where does gas exchange take place in the lungs?',
+    options:['In the trachea','In the alveoli','In the diaphragm','In the bronchi'], correct:1,
+    explain:'The alveoli are tiny air sacs at the ends of the bronchioles where gases are exchanged with the blood.' },
+  { id:10, sub:'B1.2.2 Gas exchange', q:'Which gas moves from the alveoli into the blood?',
+    options:['Carbon dioxide','Oxygen','Nitrogen','Water vapour'], correct:1,
+    explain:'Oxygen diffuses from the air in the alveoli into the blood, where it binds to haemoglobin.' },
+  { id:11, sub:'B1.2.2 Gas exchange', q:'Which gas moves from the blood into the alveoli?',
+    options:['Oxygen','Nitrogen','Carbon dioxide','Hydrogen'], correct:2,
+    explain:'Carbon dioxide (waste from respiration) diffuses out of the blood and into the alveoli to be breathed out.' },
+  { id:12, sub:'B1.2.2 Gas exchange', q:'Which is an adaptation of the alveoli for efficient gas exchange?',
+    options:['Thick walls','Very small surface area','Thin walls and a large surface area','A waterproof lining'], correct:2,
+    explain:'Alveoli have thin walls (one cell thick), a huge surface area, a moist lining and a great blood supply — perfect for diffusion.' },
+  { id:13, sub:'B1.2.2 Gas exchange', q:'Why do alveoli have a large surface area?',
+    options:['To make them stronger','To allow more gas to diffuse at once','To help us breathe in','To store oxygen'], correct:1,
+    explain:'A large surface area means more space for diffusion to take place, so gas exchange is faster.' },
+  { id:14, sub:'B1.2.2 Gas exchange', q:'By what process do gases move between alveoli and blood?',
+    options:['Active transport','Osmosis','Diffusion','Filtration'], correct:2,
+    explain:'Gases move down their concentration gradient by diffusion, from where they are more concentrated to where they are less concentrated.' },
+  { id:15, sub:'B1.2.2 Gas exchange', q:'What surrounds each alveolus to carry gases to and from it?',
+    options:['Muscle fibres','Capillaries (tiny blood vessels)','Bone tissue','Nerves'], correct:1,
+    explain:'A dense network of capillaries surrounds the alveoli so gases can be picked up or dropped off by the blood quickly.' },
+  { id:16, sub:'B1.2.2 Gas exchange', q:'Why must the lining of an alveolus be moist?',
+    options:['To make breathing more comfortable','So gases can dissolve before diffusing','To stop bacteria growing','So they do not pop'], correct:1,
+    explain:'Gases dissolve in the moist lining first, which then allows them to diffuse across the alveolus wall into the blood.' },
+
+  { id:17, sub:'B1.2.3 Breathing', q:'What is the difference between breathing and respiration?',
+    options:['They are the same thing','Breathing moves air in and out; respiration is releasing energy from food in cells','Breathing is in cells; respiration is in lungs','Respiration only happens in plants'], correct:1,
+    explain:'Breathing (ventilation) moves air in and out of the lungs. Respiration is the chemical reaction inside cells that releases energy from glucose.' },
+  { id:18, sub:'B1.2.3 Breathing', q:'What is the dome-shaped muscle below the lungs called?',
+    options:['Diaphragm','Bronchus','Trachea','Pectoral'], correct:0,
+    explain:'The diaphragm sits below the lungs and contracts to help you breathe in.' },
+  { id:19, sub:'B1.2.3 Breathing', q:'What happens to the diaphragm when you breathe IN?',
+    options:['It relaxes and rises','It contracts and flattens (moves down)','It stays still','It tightens around the heart'], correct:1,
+    explain:'When you inhale, the diaphragm contracts and flattens, increasing the volume of the chest.' },
+  { id:20, sub:'B1.2.3 Breathing', q:'What happens to the rib cage when you breathe IN?',
+    options:['It moves down and in','It moves up and out','It stays still','It collapses'], correct:1,
+    explain:'The intercostal muscles pull the ribs up and out, expanding the chest so air rushes in.' },
+  { id:21, sub:'B1.2.3 Breathing', q:'What is the main tube that carries air from the throat to the lungs?',
+    options:['Oesophagus','Bronchus','Trachea (windpipe)','Aorta'], correct:2,
+    explain:'The trachea, also called the windpipe, carries air down towards the lungs.' },
+  { id:22, sub:'B1.2.3 Breathing', q:'What are the two tubes that branch from the trachea into each lung called?',
+    options:['Alveoli','Bronchi','Capillaries','Bronchioles'], correct:1,
+    explain:'The trachea splits into two bronchi, each going to one lung. They then branch into smaller bronchioles.' },
+  { id:23, sub:'B1.2.3 Breathing', q:'What happens to the volume of the chest when you breathe OUT?',
+    options:['It increases','It decreases','It stays the same','It triples'], correct:1,
+    explain:'Breathing out: diaphragm relaxes and rises, ribs move down and in, chest volume decreases — air is pushed out.' },
+
+  { id:24, sub:'B1.2.4 Skeleton', q:'Which of these is NOT a function of the skeleton?',
+    options:['Support','Protection of organs','Digestion of food','Allowing movement'], correct:2,
+    explain:'The skeleton supports the body, protects organs, allows movement, makes blood cells and stores minerals — but it does not digest food.' },
+  { id:25, sub:'B1.2.4 Skeleton', q:'About how many bones are in an adult human skeleton?',
+    options:['46','106','206','606'], correct:2,
+    explain:'Adults have about 206 bones. Babies have more — many fuse together as they grow.' },
+  { id:26, sub:'B1.2.4 Skeleton', q:'What does the skull protect?',
+    options:['The lungs','The brain','The heart','The liver'], correct:1,
+    explain:'The skull is a bony case that surrounds and protects the delicate brain.' },
+  { id:27, sub:'B1.2.4 Skeleton', q:'What do the ribs mainly protect?',
+    options:['The heart and lungs','The brain','The kidneys','The intestines'], correct:0,
+    explain:'The rib cage forms a protective bony cage around the heart and lungs.' },
+  { id:28, sub:'B1.2.4 Skeleton', q:'Where are red and white blood cells made?',
+    options:['In the heart','In the bone marrow','In the liver','In the kidneys'], correct:1,
+    explain:'Bone marrow, found inside some bones, makes new blood cells.' },
+  { id:29, sub:'B1.2.4 Skeleton', q:'Which mineral is stored in bones and helps make them hard and strong?',
+    options:['Iron','Sodium','Calcium','Sulfur'], correct:2,
+    explain:'Calcium and phosphorus give bones their hardness. Calcium is also released into the blood when needed.' },
+  { id:30, sub:'B1.2.4 Skeleton', q:'What is the bony column running down your back called?',
+    options:['Sternum','Pelvis','Vertebral column (spine)','Cranium'], correct:2,
+    explain:'The vertebral column, or spine, is made of small bones (vertebrae) and protects the spinal cord.' },
+  { id:31, sub:'B1.2.4 Skeleton', q:'What softer tissue covers the ends of bones at joints?',
+    options:['Tendon','Cartilage','Ligament','Bone marrow'], correct:1,
+    explain:'Cartilage is smooth and slightly springy. It cushions joints and stops bones rubbing on each other.' },
+
+  { id:32, sub:'B1.2.5 Movement: joints', q:'What is a joint?',
+    options:['Where a muscle meets a tendon','Where two or more bones meet','A type of bone','A part of the spine'], correct:1,
+    explain:'A joint is any place in the body where two or more bones meet.' },
+  { id:33, sub:'B1.2.5 Movement: joints', q:'What type of joint is in the elbow or knee?',
+    options:['Ball and socket joint','Hinge joint','Fixed joint','Pivot joint'], correct:1,
+    explain:'Hinge joints (elbow, knee) only allow movement back and forth — like a door hinge.' },
+  { id:34, sub:'B1.2.5 Movement: joints', q:'What type of joint is in the shoulder or hip?',
+    options:['Ball and socket joint','Hinge joint','Fixed joint','Sliding joint'], correct:0,
+    explain:'Ball and socket joints (shoulder, hip) allow movement in many directions.' },
+  { id:35, sub:'B1.2.5 Movement: joints', q:'What is the function of ligaments?',
+    options:['Connect muscles to bones','Hold bones together at a joint','Cushion the joint','Carry blood to muscles'], correct:1,
+    explain:'Ligaments are tough but slightly stretchy bands that connect bones to other bones, holding the joint together.' },
+  { id:36, sub:'B1.2.5 Movement: joints', q:'What does cartilage do at the end of bones?',
+    options:['Connects muscles','Reduces friction and absorbs shock','Stores calcium','Sends nerve signals'], correct:1,
+    explain:'Cartilage is smooth and slightly squishy — it stops bones grinding together and acts as a shock absorber.' },
+  { id:37, sub:'B1.2.5 Movement: joints', q:'What is the role of synovial fluid in a joint?',
+    options:['It makes bones grow','It lubricates the joint to reduce friction','It carries oxygen','It produces blood cells'], correct:1,
+    explain:'Synovial fluid is like oil for the joint — it keeps everything moving smoothly.' },
+  { id:38, sub:'B1.2.5 Movement: joints', q:'What connects muscles to bones?',
+    options:['Ligaments','Cartilage','Tendons','Synovial fluid'], correct:2,
+    explain:'Tendons are tough, non-stretchy cords that attach muscles to bones so the muscle can pull on the bone.' },
+
+  { id:39, sub:'B1.2.6 Movement: muscles', q:'How do muscles cause movement?',
+    options:['They push bones apart','They contract (get shorter) and pull on bones','They stretch and push','They expand and lift bones'], correct:1,
+    explain:'Muscles can only pull — they contract to shorten, and that pulls the bone they are attached to.' },
+  { id:40, sub:'B1.2.6 Movement: muscles', q:'What are antagonistic muscles?',
+    options:['Pairs of muscles that work against each other to move a joint','Muscles that only work in plants','Muscles attached to skin','Muscles that are always relaxed'], correct:0,
+    explain:'Because muscles only pull, they work in pairs — when one contracts, the other relaxes — to move bones in opposite directions.' },
+  { id:41, sub:'B1.2.6 Movement: muscles', q:'Which muscle contracts to BEND your arm at the elbow?',
+    options:['Triceps','Biceps','Diaphragm','Quadriceps'], correct:1,
+    explain:'The biceps (front of upper arm) contracts to flex (bend) the elbow.' },
+  { id:42, sub:'B1.2.6 Movement: muscles', q:'Which muscle contracts to STRAIGHTEN your arm at the elbow?',
+    options:['Biceps','Hamstring','Triceps','Pectoralis'], correct:2,
+    explain:'The triceps (back of upper arm) contracts to extend (straighten) the elbow.' },
+  { id:43, sub:'B1.2.6 Movement: muscles', q:'When the biceps contracts to bend the arm, what does the triceps do?',
+    options:['Also contracts','Relaxes','Disappears','Pulls the bone the same way'], correct:1,
+    explain:'In an antagonistic pair, when one muscle contracts the other relaxes. They take turns to move the joint.' },
+  { id:44, sub:'B1.2.6 Movement: muscles', q:'What do tendons connect?',
+    options:['Bone to bone','Muscle to bone','Muscle to muscle','Skin to bone'], correct:1,
+    explain:'Tendons connect muscles to bones, so when the muscle contracts it can pull on the bone.' },
+  { id:45, sub:'B1.2.6 Movement: muscles', q:'Why do muscles work in antagonistic pairs?',
+    options:['So they can both push at once','Because muscles can only pull, not push, so a second muscle is needed to pull the bone back','Because one is stronger','To stop them getting tired'], correct:1,
+    explain:'A muscle can pull a bone in one direction by contracting, but can\'t push it back — so its partner pulls it back the other way.' },
+],
+};
+
+/* ============================================================
+   STORAGE — one universal streak, per-topic stats
+   ============================================================ */
+const STORAGE_KEY = 'qpcs-bio-quiz-unified-v1';
+
+function defaultState() {
+  return {
+    streak: 0,
+    lastCompletedDate: null,
+    cells: defaultTopicState(),
+    body:  defaultTopicState(),
+  };
+}
+function defaultTopicState() {
+  return {
+    totalAnswered: 0,
+    totalCorrect: 0,
+    todayDate: null,
+    todayCompleted: false,
+    todayScore: 0,
+  };
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultState();
+    const parsed = JSON.parse(raw);
+    return {
+      ...defaultState(),
+      ...parsed,
+      cells: { ...defaultTopicState(), ...(parsed.cells || {}) },
+      body:  { ...defaultTopicState(), ...(parsed.body  || {}) },
+    };
+  } catch (e) { return defaultState(); }
+}
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+/* ============================================================
+   DATE HELPERS
+   ============================================================ */
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function yesterdayStr() {
+  const d = new Date(); d.setDate(d.getDate()-1);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function dayNumber() {
+  return Math.floor(Date.now() / (1000*60*60*24));
+}
+
+/* ============================================================
+   STATE / QUIZ LOGIC
+   ============================================================ */
+let state = loadState();
+let currentQuiz = null;
+
+function fixedShuffle(arr, seedKey) {
+  // Different seed per topic so they don't shuffle identically
+  let seed = seedKey === 'cells' ? 20260427 : 19990315;
+  function rand() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getDailyQuestions(topicKey, count = 25) {
+  const shuffled = fixedShuffle(QUESTIONS[topicKey], topicKey);
+  const total = shuffled.length;
+  const start = (dayNumber() * count) % total;
+  const result = [];
+  for (let i = 0; i < count; i++) {
+    result.push(shuffled[(start + i) % total]);
+  }
+  return result;
+}
+
+function setTheme(topicKey) {
+  document.body.classList.remove('theme-cells', 'theme-body');
+  if (topicKey && TOPICS[topicKey]) {
+    document.body.classList.add(TOPICS[topicKey].themeClass);
+  }
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById(name);
+  if (t) t.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function rolloverDayIfNeeded() {
+  // Each topic's "today" status resets on a new day
+  const today = todayStr();
+  ['cells','body'].forEach(k => {
+    if (state[k].todayDate !== today) {
+      state[k].todayDate = today;
+      state[k].todayCompleted = false;
+      state[k].todayScore = 0;
+    }
+  });
+  // Universal streak resets if more than 1 day has passed since last completion
+  if (state.lastCompletedDate && state.lastCompletedDate !== today && state.lastCompletedDate !== yesterdayStr()) {
+    state.streak = 0;
+  }
+  saveState();
+}
+
+function refreshHome() {
+  rolloverDayIfNeeded();
+
+  // Header + banner streak
+  document.getElementById('streakNum').textContent = state.streak;
+  document.getElementById('bannerStreak').textContent = state.streak;
+  const pill = document.getElementById('streakPill');
+  const banner = document.getElementById('streakBanner');
+  pill.classList.toggle('active', state.streak > 0);
+  banner.classList.toggle('zero', state.streak === 0);
+
+  // Banner message
+  const today = todayStr();
+  const cellsDoneToday = state.cells.todayCompleted;
+  const bodyDoneToday  = state.body.todayCompleted;
+  const anyDoneToday   = cellsDoneToday || bodyDoneToday;
+
+  let msg = '';
+  if (state.streak === 0) {
+    msg = 'Complete a quiz today to start your streak!';
+  } else if (anyDoneToday) {
+    if (cellsDoneToday && bodyDoneToday) {
+      msg = "🎉 Both quizzes done today! Brilliant work.";
+    } else {
+      msg = "✅ Streak safe for today. Try the other quiz too if you're keen!";
+    }
+  } else {
+    msg = "⚠️ Complete one quiz today to keep your streak going!";
+  }
+  document.getElementById('bannerMsg').textContent = msg;
+
+  // Per-topic stats
+  ['cells','body'].forEach(k => {
+    const t = state[k];
+    document.getElementById(k + 'Answered').textContent = t.totalAnswered;
+    document.getElementById(k + 'Accuracy').textContent =
+      t.totalAnswered > 0 ? Math.round((t.totalCorrect / t.totalAnswered) * 100) + '%' : '—';
+    document.getElementById(k + 'TodayScore').textContent =
+      t.todayCompleted ? `${t.todayScore}/25` : '—';
+
+    const status = document.getElementById(k + 'Status');
+    if (t.todayCompleted) {
+      status.textContent = `✅ Done today — scored ${t.todayScore}/25.`;
+      status.classList.add('done');
+    } else {
+      status.textContent = `📅 Today's quiz not yet completed.`;
+      status.classList.remove('done');
+    }
+  });
+}
+
+function goHome() {
+  setTheme(null);
+  refreshHome();
+  showScreen('home');
+}
+
+function startQuiz(topicKey) {
+  setTheme(topicKey);
+  currentQuiz = {
+    topic: topicKey,
+    questions: getDailyQuestions(topicKey, 25),
+    idx: 0, score: 0, wrong: [], answered: false,
+  };
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function retryQuiz() {
+  if (currentQuiz) startQuiz(currentQuiz.topic);
+}
+
+function confirmExit() {
+  if (confirm('Exit this quiz and return to home? Your progress on this attempt will be lost (already-answered questions are saved to your stats).')) {
+    goHome();
+  }
+}
+
+function renderQuestion() {
+  const q = currentQuiz.questions[currentQuiz.idx];
+  document.getElementById('qNum').textContent = currentQuiz.idx + 1;
+  document.getElementById('qTotal').textContent = currentQuiz.questions.length;
+  document.getElementById('qScore').textContent = currentQuiz.score;
+  document.getElementById('qTopic').textContent = q.sub;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('progressFill').style.width =
+    (currentQuiz.idx / currentQuiz.questions.length) * 100 + '%';
+
+  const list = document.getElementById('optionsList');
+  list.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    btn.onclick = () => answerQuestion(i);
+    list.appendChild(btn);
+  });
+
+  document.getElementById('feedbackBox').innerHTML = '';
+  document.getElementById('nextBtnWrap').style.display = 'none';
+  currentQuiz.answered = false;
+}
+
+function answerQuestion(chosenIdx) {
+  if (currentQuiz.answered) return;
+  currentQuiz.answered = true;
+
+  const q = currentQuiz.questions[currentQuiz.idx];
+  const isCorrect = chosenIdx === q.correct;
+  if (isCorrect) currentQuiz.score++;
+  else currentQuiz.wrong.push({ q, chosen: chosenIdx });
+
+  // Track per-topic running totals
+  const t = state[currentQuiz.topic];
+  t.totalAnswered = (t.totalAnswered || 0) + 1;
+  if (isCorrect) t.totalCorrect = (t.totalCorrect || 0) + 1;
+  saveState();
+
+  document.querySelectorAll('#optionsList .option').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === chosenIdx) btn.classList.add('incorrect');
+  });
+
+  document.getElementById('feedbackBox').innerHTML = `
+    <div class="feedback ${isCorrect ? '' : 'wrong'}">
+      <strong>${isCorrect ? '✅ Correct!' : '❌ Not quite — the answer is: ' + q.options[q.correct]}</strong>
+      ${q.explain}
+    </div>
+  `;
+  document.getElementById('qScore').textContent = currentQuiz.score;
+  document.getElementById('nextBtnWrap').style.display = 'block';
+
+  const isLast = currentQuiz.idx === currentQuiz.questions.length - 1;
+  document.getElementById('nextBtn').textContent = isLast ? 'See results' : 'Next question';
+}
+
+function nextQuestion() {
+  if (currentQuiz.idx === currentQuiz.questions.length - 1) {
+    finishQuiz();
+  } else {
+    currentQuiz.idx++;
+    renderQuestion();
+  }
+}
+
+function finishQuiz() {
+  document.getElementById('progressFill').style.width = '100%';
+
+  const today = todayStr();
+  const t = state[currentQuiz.topic];
+
+  // ---------- UNIVERSAL STREAK LOGIC ----------
+  // The streak goes up the FIRST time on any given day that ANY quiz is completed.
+  // After that, doing the other quiz the same day doesn't double-count.
+  let streakChanged = false;
+  let streakWasAlreadyCountedToday = (state.lastCompletedDate === today);
+
+  if (!streakWasAlreadyCountedToday) {
+    if (state.lastCompletedDate === yesterdayStr()) {
+      state.streak += 1;          // continued streak
+    } else {
+      state.streak = 1;            // new streak (or first ever)
+    }
+    state.lastCompletedDate = today;
+    streakChanged = true;
+  }
+
+  // ---------- PER-TOPIC TODAY RECORD ----------
+  if (!t.todayCompleted) {
+    t.todayCompleted = true;
+    t.todayScore = currentQuiz.score;
+  } else if (currentQuiz.score > (t.todayScore || 0)) {
+    t.todayScore = currentQuiz.score;   // keep best score for the day
+  }
+  saveState();
+
+  // ---------- RESULTS UI ----------
+  document.getElementById('scoreNum').textContent = `${currentQuiz.score}/${currentQuiz.questions.length}`;
+  const pct = Math.round((currentQuiz.score / currentQuiz.questions.length) * 100);
+  document.getElementById('scorePct').textContent = pct + '%';
+  document.getElementById('resultsTitle').textContent =
+    `${TOPICS[currentQuiz.topic].emoji} ${TOPICS[currentQuiz.topic].name} complete!`;
+
+  let msg = '';
+  if (pct === 100) msg = '🌟 Perfect score! Outstanding work.';
+  else if (pct >= 80) msg = '🎉 Excellent! You really know this topic.';
+  else if (pct >= 60) msg = '👍 Good effort — review the ones you missed and try again.';
+  else if (pct >= 40) msg = '📚 Keep going — revisit your notes and have another go.';
+  else msg = '💪 Don\'t give up — practice makes progress.';
+  document.getElementById('resultsMsg').textContent = msg;
+
+  // Streak banner on results
+  const streakUpdate = document.getElementById('streakUpdate');
+  if (streakChanged) {
+    streakUpdate.style.display = 'block';
+    streakUpdate.textContent = state.streak === 1
+      ? `🔥 New streak started! Day 1 — come back tomorrow to make it 2.`
+      : `🔥 Streak extended to ${state.streak} days!`;
+  } else {
+    streakUpdate.style.display = 'block';
+    const otherKey = currentQuiz.topic === 'cells' ? 'body' : 'cells';
+    const otherDone = state[otherKey].todayCompleted;
+    if (otherDone) {
+      streakUpdate.textContent = `🌟 Both quizzes done today — streak is at ${state.streak} days!`;
+    } else {
+      streakUpdate.textContent = `✅ Streak already counted today (${state.streak} days). Try the other topic too?`;
+    }
+  }
+
+  // Review wrong
+  const reviewSection = document.getElementById('reviewSection');
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '';
+  if (currentQuiz.wrong.length === 0) {
+    reviewSection.style.display = 'none';
+  } else {
+    reviewSection.style.display = 'block';
+    currentQuiz.wrong.forEach(({ q, chosen }) => {
+      const div = document.createElement('div');
+      div.className = 'review-item';
+      div.innerHTML = `
+        <div class="q">${q.q}</div>
+        <div class="ans your">Your answer: ${q.options[chosen]}</div>
+        <div class="ans correct">Correct: ${q.options[q.correct]}</div>
+        <div class="ans">${q.explain}</div>
+      `;
+      reviewList.appendChild(div);
+    });
+  }
+
+  showScreen('results');
+}
+
+function resetAllData() {
+  if (!confirm('This will reset your streak and all progress for both quizzes. Are you sure?')) return;
+  state = defaultState();
+  saveState();
+  goHome();
+}
+
+// INIT
+goHome();
+</script>
+</body>
+</html>
