@@ -556,6 +556,227 @@
   .diagram { display: block; margin: 0 auto; }
 
   /* ==========================================================
+     AUTHENTICATION
+     ========================================================== */
+  #view-auth {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .auth-card {
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: var(--shadow-lift);
+    text-align: center;
+  }
+  .auth-logo {
+    margin-bottom: 16px;
+  }
+  .auth-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .auth-subtitle {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .auth-google-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #3c4043;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .auth-google-btn:hover {
+    border-color: var(--ink);
+    background: #FAFAFA;
+  }
+  .auth-divider {
+    text-align: center;
+    margin: 22px 0;
+    position: relative;
+  }
+  .auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--line);
+  }
+  .auth-divider span {
+    background: var(--bg-card);
+    padding: 0 14px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    position: relative;
+  }
+  .auth-field {
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  .auth-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .auth-field input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--ink);
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+  }
+  .auth-field input:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .auth-error {
+    background: #FDEBE7;
+    border: 1px solid #C84B31;
+    color: #8C2A1A;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  .auth-submit-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.15s;
+  }
+  .auth-submit-btn:hover { opacity: 0.85; }
+  .auth-toggle {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .auth-toggle a {
+    color: var(--ink);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .auth-note {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-top: 20px;
+    line-height: 1.5;
+    padding: 0 12px;
+  }
+
+  /* ==========================================================
+     USER STRIP (header on home)
+     ========================================================== */
+  .user-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .user-strip-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .user-strip-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F4D03F, #FF8C42);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .user-strip-name {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  .user-strip-username {
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.3;
+  }
+  .user-strip-signout {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .user-strip-signout:hover {
+    background: var(--bg);
+    border-color: var(--ink-soft);
+    color: var(--ink);
+  }
+
+  /* ==========================================================
+     BADGES & RE-ATTEMPT STYLES
+     ========================================================== */
+  .quiz-badge-mandatory {
+    display: inline-block;
+    background: linear-gradient(135deg, #F4D03F, #FF8C42);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .quiz-card-done {
+    background: #FAFFFA !important;
+    border-color: #2D7A4F !important;
+  }
+
+  /* ==========================================================
      TOP HOME — stats banner, choice cards, duck quest
      ========================================================== */
   .tophome-hero {
@@ -1156,10 +1377,27 @@
 
 <main class="container">
 
+  <!-- ============ AUTH (sign in / sign up) ============ -->
+  <section class="view active" id="view-auth">
+    <div id="auth-content"></div>
+  </section>
+
   <!-- ============ TOP HOME (new default) ============ -->
-  <section class="view active" id="view-tophome">
+  <section class="view" id="view-tophome">
+    <div class="user-strip">
+      <div class="user-strip-info">
+        <div class="user-strip-avatar" id="user-avatar">A</div>
+        <div>
+          <div class="user-strip-name" id="user-strip-name">User</div>
+          <div class="user-strip-username" id="user-strip-username">@user</div>
+        </div>
+      </div>
+      <button class="user-strip-signout" onclick="signOut()" title="Sign out">
+        Sign out ↗
+      </button>
+    </div>
     <div class="tophome-hero">
-      <h1 class="page-title">Hi Archie <span class="wave">👋</span></h1>
+      <h1 class="page-title">Hi <span id="hero-name">there</span> <span class="wave">👋</span></h1>
       <p class="page-subtitle">What would you like to do today?</p>
     </div>
 
@@ -3673,7 +3911,7 @@ const SUBJECTS = {
    ========================================================== */
 
 let state = {
-  view: 'tophome',
+  view: 'auth',
   subject: null,
   topic: null,
   cardIndex: 0,
@@ -3682,11 +3920,55 @@ let state = {
 };
 
 /* ==========================================================
-   STATS SYSTEM (localStorage-backed)
+   AUTHENTICATION SYSTEM
    ========================================================== */
-const STATS_KEY = 'archie.stats.v1';
+const USERS_KEY = 'questhub.users.v1';        // { username: { passwordHash, displayName, provider, createdAt } }
+const SESSION_KEY = 'questhub.session.v1';    // { username, signedInAt }
+const STATS_PREFIX = 'questhub.stats.';       // followed by username
+
 const SUBJECT_KEYS = ['science', 'maths', 'english', 'humanities', 'spanish', 'cs'];
 const NON_MATHS_KEYS = ['science', 'english', 'humanities', 'spanish', 'cs'];
+
+// Simple non-cryptographic hash for password storage. NOT secure for real use,
+// but appropriate for a local-only app where the data never leaves the browser.
+function hashPassword(pwd) {
+  let h = 5381;
+  for (let i = 0; i < pwd.length; i++) {
+    h = ((h << 5) + h) + pwd.charCodeAt(i);
+    h |= 0;
+  }
+  // Mix in length to make it harder to guess
+  h = h ^ (pwd.length * 2654435761);
+  return 'h_' + (h >>> 0).toString(36) + '_' + pwd.length;
+}
+
+function loadUsers() {
+  try {
+    const raw = localStorage.getItem(USERS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) { return {}; }
+}
+
+function saveUsers(users) {
+  try { localStorage.setItem(USERS_KEY, JSON.stringify(users)); } catch (e) {}
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function saveSession(session) {
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch (e) {}
+}
+
+function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+}
+
+let CURRENT_USER = null;  // { username, displayName, provider }
 
 function todayKey() {
   const d = new Date();
@@ -3697,18 +3979,24 @@ function defaultStats() {
   return {
     coins: 0,
     streak: 0,
-    lastFullDay: null,           // last date all 3 quizzes were completed
-    lastWeekStartDate: null,     // start date of current 7-day streak (for duck quest)
-    quizzesByDate: {},           // { '2026-05-04': { 'maths': {score:8, total:10, perfect:false}, ... } }
-    revisedSubjects: {}          // { science: true, maths: true, ... }
+    lastFullDay: null,
+    lastWeekStartDate: null,
+    quizzesByDate: {},        // { '2026-05-04': { 'maths': {score, total, perfect, coins, attempts}, ... } }
+    revisedSubjects: {},
+    bestScores: {}            // { 'maths': {score, total, perfect, date}, ... } - lifetime best
   };
 }
 
-let STATS = loadStats();
+let STATS = defaultStats();
+
+function statsKeyForUser() {
+  return STATS_PREFIX + (CURRENT_USER ? CURRENT_USER.username : 'anonymous');
+}
 
 function loadStats() {
+  if (!CURRENT_USER) return defaultStats();
   try {
-    const raw = localStorage.getItem(STATS_KEY);
+    const raw = localStorage.getItem(statsKeyForUser());
     if (!raw) return defaultStats();
     const s = JSON.parse(raw);
     return { ...defaultStats(), ...s };
@@ -3718,7 +4006,214 @@ function loadStats() {
 }
 
 function saveStats() {
-  try { localStorage.setItem(STATS_KEY, JSON.stringify(STATS)); } catch (e) {}
+  if (!CURRENT_USER) return;
+  try { localStorage.setItem(statsKeyForUser(), JSON.stringify(STATS)); } catch (e) {}
+}
+
+/* ==========================================================
+   AUTH ACTIONS
+   ========================================================== */
+function authSignUp(username, displayName, password, provider) {
+  username = (username || '').trim().toLowerCase();
+  displayName = (displayName || '').trim();
+  if (!username) return { error: 'Please choose a username.' };
+  if (username.length < 3) return { error: 'Username must be at least 3 characters.' };
+  if (!/^[a-z0-9_-]+$/.test(username)) return { error: 'Username can only contain lowercase letters, numbers, underscore and dash.' };
+  if (!displayName) displayName = username;
+  if (provider !== 'google' && (!password || password.length < 4)) {
+    return { error: 'Password must be at least 4 characters.' };
+  }
+  
+  const users = loadUsers();
+  if (users[username]) {
+    return { error: 'That username already exists. Try signing in instead.' };
+  }
+  
+  users[username] = {
+    passwordHash: provider === 'google' ? null : hashPassword(password),
+    displayName,
+    provider: provider || 'local',
+    createdAt: new Date().toISOString()
+  };
+  saveUsers(users);
+  
+  return { success: true, username, displayName, provider: provider || 'local' };
+}
+
+function authSignIn(username, password) {
+  username = (username || '').trim().toLowerCase();
+  if (!username) return { error: 'Please enter your username.' };
+  
+  const users = loadUsers();
+  const user = users[username];
+  if (!user) return { error: 'No account found with that username.' };
+  
+  if (user.provider === 'google') {
+    return { error: 'This account uses Google sign-in. Please use the Google button.' };
+  }
+  
+  if (user.passwordHash !== hashPassword(password || '')) {
+    return { error: 'Wrong password. Try again.' };
+  }
+  
+  return { success: true, username, displayName: user.displayName, provider: user.provider };
+}
+
+function startSession(username, displayName, provider) {
+  CURRENT_USER = { username, displayName, provider };
+  saveSession({ username, displayName, provider, signedInAt: new Date().toISOString() });
+  STATS = loadStats();
+  checkStreakBroken();
+  goHome();
+}
+
+function signOut() {
+  if (!confirm('Sign out? You can sign back in any time and your progress will still be there.')) return;
+  CURRENT_USER = null;
+  STATS = defaultStats();
+  clearSession();
+  state.view = 'auth';
+  renderAuth();
+  showView('auth');
+}
+
+function tryAutoSignIn() {
+  const session = loadSession();
+  if (!session) return false;
+  const users = loadUsers();
+  if (!users[session.username]) {
+    clearSession();
+    return false;
+  }
+  const u = users[session.username];
+  CURRENT_USER = { username: session.username, displayName: u.displayName, provider: u.provider };
+  STATS = loadStats();
+  return true;
+}
+
+/* ==========================================================
+   AUTH UI
+   ========================================================== */
+let authMode = 'signin'; // 'signin' | 'signup'
+
+function renderAuth() {
+  const isSignUp = authMode === 'signup';
+  let html = `
+    <div class="auth-card">
+      <div class="auth-logo">
+        <svg viewBox="0 0 60 60" width="56" height="56">
+          <circle cx="30" cy="30" r="26" fill="#F4D03F" stroke="#D4A017" stroke-width="2"/>
+          <ellipse cx="30" cy="34" rx="11" ry="9" fill="#FAF6EE"/>
+          <circle cx="26" cy="32" r="2" fill="#2D2520"/>
+          <ellipse cx="38" cy="33" rx="3.5" ry="2.5" fill="#FF8C42"/>
+          <path d="M 35 34 L 41 34 L 38 36 Z" fill="#FF8C42"/>
+        </svg>
+      </div>
+      <h1 class="auth-title">${isSignUp ? 'Create your account' : 'Welcome back!'}</h1>
+      <p class="auth-subtitle">${isSignUp ? 'Sign up to start earning duck coins 🦆' : 'Sign in to continue your quest'}</p>
+      
+      <button class="auth-google-btn" onclick="authGoogleSimulated()">
+        <svg width="18" height="18" viewBox="0 0 18 18" style="margin-right:10px;">
+          <path d="M17.64 9.2c0-.64-.06-1.25-.17-1.84H9v3.49h4.84c-.21 1.13-.84 2.08-1.79 2.72v2.26h2.9c1.7-1.56 2.69-3.87 2.69-6.63z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.47-.81 5.96-2.18l-2.9-2.26c-.81.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.71H.96v2.34A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+          <path d="M3.95 10.71A5.41 5.41 0 0 1 3.66 9c0-.59.1-1.17.29-1.71V4.95H.96A8.997 8.997 0 0 0 0 9c0 1.45.35 2.82.96 4.05l2.99-2.34z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A8.997 8.997 0 0 0 .96 4.95l2.99 2.34C4.66 5.17 6.65 3.58 9 3.58z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+      
+      <div class="auth-divider"><span>or</span></div>
+      
+      <form id="auth-form" onsubmit="event.preventDefault(); ${isSignUp ? 'submitSignUp()' : 'submitSignIn()'};">
+        ${isSignUp ? `
+          <div class="auth-field">
+            <label for="auth-display">Your name</label>
+            <input id="auth-display" type="text" placeholder="What should we call you?" autocomplete="name" />
+          </div>
+        ` : ''}
+        <div class="auth-field">
+          <label for="auth-username">Username</label>
+          <input id="auth-username" type="text" placeholder="${isSignUp ? 'Choose a username (lowercase, no spaces)' : 'Your username'}" autocomplete="username" />
+        </div>
+        <div class="auth-field">
+          <label for="auth-password">Password</label>
+          <input id="auth-password" type="password" placeholder="${isSignUp ? 'At least 4 characters' : 'Your password'}" autocomplete="${isSignUp ? 'new-password' : 'current-password'}" />
+        </div>
+        <div class="auth-error" id="auth-error" style="display:none;"></div>
+        <button type="submit" class="auth-submit-btn">
+          ${isSignUp ? 'Create account' : 'Sign in'} →
+        </button>
+      </form>
+      
+      <div class="auth-toggle">
+        ${isSignUp 
+          ? `Already have an account? <a onclick="setAuthMode('signin')">Sign in</a>`
+          : `New here? <a onclick="setAuthMode('signup')">Create an account</a>`}
+      </div>
+    </div>
+    
+    <p class="auth-note">
+      🔒 Your account is stored on this device only. Multiple people can use the same device — each with their own progress.
+    </p>
+  `;
+  
+  document.getElementById('auth-content').innerHTML = html;
+}
+
+function setAuthMode(mode) {
+  authMode = mode;
+  renderAuth();
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function submitSignIn() {
+  const username = document.getElementById('auth-username').value;
+  const password = document.getElementById('auth-password').value;
+  const result = authSignIn(username, password);
+  if (result.error) {
+    showAuthError(result.error);
+    return;
+  }
+  startSession(result.username, result.displayName, result.provider);
+}
+
+function submitSignUp() {
+  const displayName = document.getElementById('auth-display').value;
+  const username = document.getElementById('auth-username').value;
+  const password = document.getElementById('auth-password').value;
+  const result = authSignUp(username, displayName, password);
+  if (result.error) {
+    showAuthError(result.error);
+    return;
+  }
+  startSession(result.username, result.displayName, result.provider);
+}
+
+function authGoogleSimulated() {
+  // Simulates Google OAuth: prompt for a name and create/use a Google-typed account
+  const name = prompt('Continue with Google\n\nIn a real Google sign-in, your name and email would be filled in automatically. For this local version, just enter your name:');
+  if (!name || !name.trim()) return;
+  
+  const displayName = name.trim();
+  // Make a username from the display name
+  const baseUsername = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 16) || 'user';
+  const username = 'g_' + baseUsername;
+  
+  const users = loadUsers();
+  if (users[username]) {
+    // Existing Google user — sign in
+    startSession(username, users[username].displayName, 'google');
+  } else {
+    // New Google user — sign up
+    const result = authSignUp(username, displayName, null, 'google');
+    if (result.error) { showAuthError(result.error); return; }
+    startSession(result.username, result.displayName, result.provider);
+  }
 }
 
 function todaysQuizSelections() {
@@ -3759,26 +4254,67 @@ function quizzesDoneToday() {
 }
 
 function todayCompleteCount() {
-  return Object.keys(quizzesDoneToday()).length;
+  // Count only the daily 3 mandatory quizzes that have been completed
+  const done = quizzesDoneToday();
+  const required = todaysQuizSelections();
+  return required.filter(s => done[s]).length;
 }
 
 function recordQuizResult(subjectKey, score, total) {
   const today = todayKey();
   if (!STATS.quizzesByDate[today]) STATS.quizzesByDate[today] = {};
+  
   const perfect = score === total;
-  // Coins: 1 per correct + double if perfect
   const baseCoins = score;
-  const totalCoins = perfect ? baseCoins * 2 : baseCoins;
+  const earnedCoins = perfect ? baseCoins * 2 : baseCoins;
+  
+  // Track per-day per-subject (preserving best result and counting attempts)
+  const previous = STATS.quizzesByDate[today][subjectKey];
+  const attemptNum = (previous?.attempts || 0) + 1;
+  
+  // Only first attempt of the day awards coins; later attempts are practice
+  const isFirstAttemptToday = !previous;
+  const coinsToAward = isFirstAttemptToday ? earnedCoins : 0;
+  
+  // Always update record to show MOST RECENT attempt's result (with best score noted)
+  const bestScore = previous ? Math.max(previous.bestScore || previous.score, score) : score;
+  const bestPerfect = bestScore === total;
+  
   STATS.quizzesByDate[today][subjectKey] = {
-    score, total, perfect, coins: totalCoins
+    score,           // most recent score
+    total,
+    perfect,
+    coins: (previous?.coins || 0) + coinsToAward,
+    attempts: attemptNum,
+    bestScore,
+    bestPerfect
   };
-  STATS.coins += totalCoins;
-  // Update streak if all 3 done today
+  
+  STATS.coins += coinsToAward;
+  
+  // Track lifetime best
+  if (!STATS.bestScores) STATS.bestScores = {};
+  const lifetimeBest = STATS.bestScores[subjectKey];
+  if (!lifetimeBest || score > lifetimeBest.score || (score === lifetimeBest.score && perfect && !lifetimeBest.perfect)) {
+    STATS.bestScores[subjectKey] = { score, total, perfect, date: today };
+  }
+  
+  // Update streak ONLY if all 3 mandatory daily quizzes done
   if (todayCompleteCount() >= 3) {
     updateStreak();
   }
   saveStats();
-  return { coins: totalCoins, perfect, baseCoins };
+  
+  return {
+    coins: coinsToAward,
+    perfect,
+    baseCoins,
+    isFirstAttempt: isFirstAttemptToday,
+    attempts: attemptNum,
+    bestScore,
+    score,
+    total
+  };
 }
 
 function updateStreak() {
@@ -3819,6 +4355,23 @@ function recordSubjectRevised(subjectKey) {
 }
 
 function refreshStatsDisplay() {
+  // User strip
+  if (CURRENT_USER) {
+    const heroEl = document.getElementById('hero-name');
+    if (heroEl) heroEl.textContent = CURRENT_USER.displayName.split(' ')[0];
+    const nameEl = document.getElementById('user-strip-name');
+    if (nameEl) nameEl.textContent = CURRENT_USER.displayName;
+    const userEl = document.getElementById('user-strip-username');
+    if (userEl) {
+      const provider = CURRENT_USER.provider === 'google' ? ' · Google' : '';
+      userEl.textContent = '@' + CURRENT_USER.username + provider;
+    }
+    const avEl = document.getElementById('user-avatar');
+    if (avEl) {
+      avEl.textContent = CURRENT_USER.displayName.charAt(0).toUpperCase();
+    }
+  }
+  
   const coinsEl = document.getElementById('stat-coins');
   if (coinsEl) coinsEl.textContent = STATS.coins;
   
@@ -3890,6 +4443,12 @@ function showView(name) {
 }
 
 function goHome() {
+  if (!CURRENT_USER) {
+    state.view = 'auth';
+    renderAuth();
+    showView('auth');
+    return;
+  }
   state = { view: 'tophome', subject: null, topic: null, cardIndex: 0, flipped: false, quiz: null };
   setBreadcrumb([]);
   // Remove any quest-complete bubble that may have been added
@@ -4130,36 +4689,17 @@ function renderTestHome() {
   const today = todayKey();
   const selections = todaysQuizSelections();
   const done = quizzesDoneToday();
-  const totalQuizzes = selections.length;
   const completedCount = selections.filter(s => done[s]).length;
   
-  let html = `
-    <div class="quiz-summary-card">
-      Today (<strong>${formatToday()}</strong>): <strong>${completedCount} of ${totalQuizzes}</strong> quizzes done.
-      ${completedCount === totalQuizzes ? '<br>🎉 All done for today — your streak is safe!' : ''}
-    </div>
-    <div class="quiz-list">
-  `;
-  
-  for (const subjKey of selections) {
+  // Build a render helper for one quiz card
+  function renderQuizCard(subjKey, isMandatory) {
     const meta = QUIZ_META[subjKey];
     const result = done[subjKey];
     const bank = QUIZ_BANKS[subjKey];
     const hasBank = bank && bank.length >= meta.count;
     
-    if (result) {
-      html += `
-        <button class="quiz-card" disabled>
-          <div class="quiz-card-icon" style="background:${meta.iconBg}">${meta.icon}</div>
-          <div class="quiz-card-info">
-            <div class="quiz-card-title">${meta.name} ${subjKey === 'maths' ? '— daily 10' : ''}</div>
-            <div class="quiz-card-meta">Score: ${result.score}/${result.total} · ${result.coins} 🦆 coins earned${result.perfect ? ' · 100% bonus!' : ''}</div>
-          </div>
-          <div class="quiz-card-status done">✓ Done</div>
-        </button>
-      `;
-    } else if (!hasBank) {
-      html += `
+    if (!hasBank) {
+      return `
         <button class="quiz-card" disabled>
           <div class="quiz-card-icon" style="background:${meta.iconBg}">${meta.icon}</div>
           <div class="quiz-card-info">
@@ -4169,24 +4709,72 @@ function renderTestHome() {
           <div class="quiz-card-status todo">Soon</div>
         </button>
       `;
-    } else {
-      html += `
-        <button class="quiz-card" onclick="startQuiz('${subjKey}')">
+    }
+    
+    const titleSuffix = subjKey === 'maths' ? ' — daily 10' : '';
+    const mandatoryBadge = isMandatory ? '<span class="quiz-badge-mandatory">Daily</span>' : '';
+    
+    if (result) {
+      // Done at least once today
+      const attemptText = result.attempts > 1 ? ` · ${result.attempts} attempts` : '';
+      const bestText = result.attempts > 1 ? ` · best ${result.bestScore}/${result.total}` : '';
+      const buttonText = 'Try again →';
+      return `
+        <button class="quiz-card quiz-card-done" onclick="startQuiz('${subjKey}')">
           <div class="quiz-card-icon" style="background:${meta.iconBg}">${meta.icon}</div>
           <div class="quiz-card-info">
-            <div class="quiz-card-title">${meta.name}${subjKey === 'maths' ? ' — daily 10' : ''}</div>
-            <div class="quiz-card-meta">${meta.count} questions · ${subjKey === 'maths' ? 'Junior Maths Challenge questions' : 'challenging exam-style questions'}</div>
+            <div class="quiz-card-title">${meta.name}${titleSuffix} ${mandatoryBadge}</div>
+            <div class="quiz-card-meta">Last: ${result.score}/${result.total}${bestText}${attemptText} · ${result.coins} 🦆 earned${result.bestPerfect ? ' · ⭐ perfect once' : ''}</div>
           </div>
-          <div class="quiz-card-status todo">Start →</div>
+          <div class="quiz-card-status done">✓ Done · ${buttonText}</div>
         </button>
       `;
     }
+    
+    const metaText = subjKey === 'maths' 
+      ? `${meta.count} questions · Junior Maths Challenge questions`
+      : `${meta.count} questions · challenging exam-style questions`;
+    
+    return `
+      <button class="quiz-card" onclick="startQuiz('${subjKey}')">
+        <div class="quiz-card-icon" style="background:${meta.iconBg}">${meta.icon}</div>
+        <div class="quiz-card-info">
+          <div class="quiz-card-title">${meta.name}${titleSuffix} ${mandatoryBadge}</div>
+          <div class="quiz-card-meta">${metaText}</div>
+        </div>
+        <div class="quiz-card-status todo">Start →</div>
+      </button>
+    `;
   }
   
-  html += `
+  // Mandatory list (the daily 3) + practice list (the other 3)
+  const mandatorySet = new Set(selections);
+  const practice = SUBJECT_KEYS.filter(s => !mandatorySet.has(s));
+  
+  const allDoneToday = completedCount === selections.length;
+  
+  let html = `
+    <div class="quiz-summary-card">
+      Today (<strong>${formatToday()}</strong>): <strong>${completedCount} of ${selections.length}</strong> daily quizzes done.
+      ${allDoneToday 
+        ? '<br>🎉 All daily quizzes done — your streak is safe! Want extra practice? Try the rest below.' 
+        : '<br>Coins are awarded on your <strong>first attempt</strong> of the day. Re-tries are free practice!'}
     </div>
-    <p style="text-align:center; color:var(--ink-soft); font-size:14px; margin-top:24px;">
-      💡 Earn 1 🦆 coin per correct answer. Get <strong>100%</strong> on a quiz and your coins <strong>double</strong>!
+    
+    <h2 class="section-heading" style="margin-top:8px;">⭐ Today's Daily 3 (counts towards streak)</h2>
+    <div class="quiz-list">
+      ${selections.map(s => renderQuizCard(s, true)).join('')}
+    </div>
+    
+    <h2 class="section-heading" style="margin-top:32px;">📚 Practice Anytime</h2>
+    <p style="color:var(--ink-soft); font-size:14px; margin: -8px 0 16px;">These don't count toward your daily streak — but earn coins on your first try, just like the daily 3.</p>
+    <div class="quiz-list">
+      ${practice.map(s => renderQuizCard(s, false)).join('')}
+    </div>
+    
+    <p style="text-align:center; color:var(--ink-soft); font-size:14px; margin-top:32px;">
+      💡 Earn 1 🦆 coin per correct answer (first daily attempt only). Get <strong>100%</strong> and coins <strong>double</strong>!<br>
+      ↻ Re-try any quiz as many times as you want for practice — your <strong>best score</strong> is tracked.
     </p>
   `;
   
@@ -4200,24 +4788,19 @@ function formatToday() {
   return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
 }
 
-function pickDailyMathsQuestions() {
-  // Day-progressive: as days pass, questions get harder
-  // Use today's date as seed for selection within bank
+function pickDailyMathsQuestions(attemptNum) {
+  // Day-progressive: as days pass, questions get harder.
+  // First attempt of the day is locked (so siblings/friends compete on same Q).
+  // Re-attempts get fresh selections within the same difficulty mix.
   const today = todayKey();
-  const seed = hashStr(today + 'maths');
+  // Seed depends on attempt number — first attempt has stable seed, re-attempts vary
+  const seed = hashStr(today + 'maths' + (attemptNum > 0 ? '_retry_' + attemptNum + '_' + Date.now() : ''));
   const rand = mulberry32(seed);
   
-  // Days since 1 May 2026 = "day number" for difficulty progression
   const start = new Date('2026-05-01');
   const now = new Date();
   const daysSince = Math.max(0, Math.floor((now - start) / (1000*60*60*24)));
   
-  // Difficulty distribution by day number
-  // Day 0-2: 6×L1 + 4×L2 (easy start)
-  // Day 3-7: 4×L1 + 4×L2 + 2×L3
-  // Day 8-14: 2×L1 + 4×L2 + 3×L3 + 1×L4
-  // Day 15-21: 1×L1 + 3×L2 + 3×L3 + 2×L4 + 1×L5
-  // Day 22+: 2×L2 + 3×L3 + 3×L4 + 2×L5
   let dist;
   if (daysSince < 3) dist = [6, 4, 0, 0, 0];
   else if (daysSince < 8) dist = [4, 4, 2, 0, 0];
@@ -4230,7 +4813,6 @@ function pickDailyMathsQuestions() {
     const want = dist[lvl-1];
     if (want === 0) continue;
     const pool = MATHS_BANK.filter(q => q.level === lvl);
-    // Shuffle pool with seeded random
     const shuffled = [...pool];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(rand() * (i + 1));
@@ -4241,13 +4823,17 @@ function pickDailyMathsQuestions() {
   return picks;
 }
 
-function pickQuizQuestions(subjectKey) {
-  if (subjectKey === 'maths') return pickDailyMathsQuestions();
+function pickQuizQuestions(subjectKey, attemptNum) {
+  attemptNum = attemptNum || 0;
+  if (subjectKey === 'maths') return pickDailyMathsQuestions(attemptNum);
   
   const bank = QUIZ_BANKS[subjectKey];
   if (!bank || !bank.length) return [];
   const today = todayKey();
-  const seed = hashStr(today + subjectKey);
+  // First attempt: stable daily seed. Re-attempts: fresh shuffle.
+  const seed = attemptNum > 0
+    ? hashStr(today + subjectKey + '_retry_' + attemptNum + '_' + Date.now())
+    : hashStr(today + subjectKey);
   const rand = mulberry32(seed);
   const shuffled = [...bank];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -4258,10 +4844,15 @@ function pickQuizQuestions(subjectKey) {
 }
 
 function startQuiz(subjectKey) {
+  // Find what attempt number this is (0 if first)
+  const done = quizzesDoneToday();
+  const previous = done[subjectKey];
+  const attemptNum = previous ? previous.attempts : 0;
+  
   state.view = 'quiz';
   state.quiz = {
     subject: subjectKey,
-    questions: pickQuizQuestions(subjectKey),
+    questions: pickQuizQuestions(subjectKey, attemptNum),
     index: 0,
     score: 0,
     answers: [],
@@ -4377,6 +4968,7 @@ function finishQuiz() {
   const meta = QUIZ_META[q.subject];
   const perfect = result.perfect;
   const pct = Math.round((q.score / total) * 100);
+  const isMandatory = todaysQuizSelections().includes(q.subject);
   
   let emoji, title;
   if (perfect) { emoji = '🏆'; title = 'PERFECT SCORE!'; }
@@ -4389,36 +4981,58 @@ function finishQuiz() {
     <div class="quiz-done-card ${perfect ? 'perfect' : ''}">
       <span class="quiz-done-emoji">${emoji}</span>
       <h1 class="quiz-done-title">${title}</h1>
-      <div class="quiz-done-score-label">${meta.name} quiz score</div>
+      <div class="quiz-done-score-label">${meta.name} quiz · attempt ${result.attempts}</div>
       <div class="quiz-done-score">${q.score}<span style="color:var(--ink-soft); font-size:32px; font-weight:500;">/${total}</span></div>
   `;
   
-  if (perfect) {
-    html += `<div class="quiz-done-bonus">🎉 100% bonus! Coins doubled from ${result.baseCoins} → ${result.coins}</div>`;
+  // Show personal best if multiple attempts
+  if (result.attempts > 1) {
+    const isNewBest = q.score === result.bestScore;
+    if (isNewBest && q.score > 0) {
+      html += `<div style="color:#2D7A4F; font-weight:600; margin-bottom:8px;">🎯 New personal best!</div>`;
+    } else {
+      html += `<div style="color:var(--ink-soft); margin-bottom:8px;">Personal best: ${result.bestScore}/${total}</div>`;
+    }
   }
   
-  html += `
+  if (result.isFirstAttempt) {
+    if (perfect) {
+      html += `<div class="quiz-done-bonus">🎉 100% bonus! Coins doubled from ${result.baseCoins} → ${result.coins}</div>`;
+    }
+    html += `
       <div class="quiz-done-coins">
         🦆 +${result.coins} duck coins earned!
       </div>
-  `;
+    `;
+  } else {
+    html += `
+      <div style="background:#F0F0F0; border:2px solid var(--line); border-radius:14px; padding:14px 18px; margin: 18px 0; color:var(--ink-soft); font-size:14px;">
+        ↻ Practice attempt — coins are only earned on your first daily try.
+      </div>
+    `;
+  }
   
-  // Show streak/encouragement
-  const todayDone = todayCompleteCount();
-  if (todayDone >= 3) {
-    if (STATS.streak >= 7) {
-      html += `<p style="color:#2D7A4F;font-weight:600;">🦆 7-DAY STREAK COMPLETE! Show this to mum to claim your real mini duck!</p>`;
-    } else {
-      html += `<p style="color:#2D7A4F;font-weight:600;">✓ All ${todayDone} quizzes done today — streak: ${STATS.streak} day${STATS.streak !== 1 ? 's' : ''} 🔥</p>`;
+  // Streak / encouragement messaging
+  if (isMandatory) {
+    const todayDone = todayCompleteCount();
+    if (todayDone >= 3) {
+      if (STATS.streak >= 7) {
+        html += `<p style="color:#2D7A4F;font-weight:600;">🦆 7-DAY STREAK COMPLETE! Show this to mum to claim your real mini duck!</p>`;
+      } else {
+        html += `<p style="color:#2D7A4F;font-weight:600;">✓ All daily quizzes done — streak: ${STATS.streak} day${STATS.streak !== 1 ? 's' : ''} 🔥</p>`;
+      }
+    } else if (result.isFirstAttempt) {
+      const remaining = 3 - todayDone;
+      html += `<p style="color:var(--ink-soft);">${remaining} more daily quiz${remaining !== 1 ? 'zes' : ''} to go to keep your streak.</p>`;
     }
   } else {
-    const remaining = 3 - todayDone;
-    html += `<p style="color:var(--ink-soft);">${remaining} more quiz${remaining !== 1 ? 'zes' : ''} to go today to keep your streak.</p>`;
+    html += `<p style="color:var(--ink-soft);">Practice quiz — doesn't affect your daily streak.</p>`;
   }
   
   html += `
       <div class="quiz-done-actions">
-        <button onclick="goTestHome()">Back to quizzes</button>
+        <button onclick="startQuiz('${q.subject}')">↻ Try again</button>
+        <button onclick="goTestHome()">All quizzes</button>
         <button class="primary" onclick="goHome()">🏠 Home</button>
       </div>
     </div>
@@ -4918,9 +5532,16 @@ const QUIZ_BANKS = {
   cs: CS_BANK
 };
 
-// Initial setup
-checkStreakBroken();
-goHome();
+// ===== Initial setup =====
+// Try to auto-sign-in from saved session, otherwise show auth screen
+if (tryAutoSignIn()) {
+  checkStreakBroken();
+  goHome();
+} else {
+  state.view = 'auth';
+  renderAuth();
+  showView('auth');
+}
 </script>
 
 </body>
