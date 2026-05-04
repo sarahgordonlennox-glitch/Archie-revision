@@ -777,6 +777,214 @@
   }
 
   /* ==========================================================
+     LEADERBOARD
+     ========================================================== */
+  .leaderboard-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #FFF8E7 0%, #FEF5E7 100%);
+    border: 2px solid #F4D03F;
+    border-radius: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    text-align: left;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+  }
+  .leaderboard-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+  .leaderboard-link-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .leaderboard-link-text {
+    flex: 1;
+  }
+  .leaderboard-link-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .leaderboard-link-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .leaderboard-link-arrow {
+    font-size: 22px;
+    color: #C9A227;
+    font-weight: 700;
+  }
+
+  .leaderboard-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: 18px;
+  }
+  .leaderboard-empty-emoji {
+    font-size: 64px;
+    margin-bottom: 16px;
+  }
+  .leaderboard-empty h3 {
+    font-size: 20px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .leaderboard-empty p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .leaderboard-mystatus {
+    background: linear-gradient(135deg, #E8F4FD 0%, #FFFFFF 100%);
+    border: 2px solid #1F5E8C;
+    border-radius: 16px;
+    padding: 14px 22px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .leaderboard-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s;
+  }
+  .leaderboard-row.is-top3 {
+    background: linear-gradient(135deg, #FFF8E7 0%, #FFFFFF 100%);
+    border-color: #F4D03F;
+  }
+  .leaderboard-row.is-me {
+    border-color: #1F5E8C;
+    border-width: 3px;
+    background: linear-gradient(135deg, #E8F4FD 0%, #FFFFFF 100%);
+  }
+  .leaderboard-row.is-me.is-top3 {
+    border-color: #C9A227;
+    background: linear-gradient(135deg, #FFF8E7 0%, #E8F4FD 100%);
+  }
+
+  .lb-rank {
+    width: 44px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .lb-rank-medal {
+    font-size: 32px;
+    line-height: 1;
+  }
+  .lb-rank-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+  .lb-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F4D03F, #FF8C42);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .lb-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .lb-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .lb-meta {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .lb-you-badge {
+    display: inline-block;
+    background: #1F5E8C;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .lb-coins {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .lb-coins-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .lb-coins-label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .leaderboard-note {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-top: 24px;
+    padding: 0 12px;
+    line-height: 1.5;
+  }
+
+  /* Mobile leaderboard */
+  @media (max-width: 720px) {
+    .leaderboard-row {
+      padding: 12px 12px;
+      gap: 10px;
+    }
+    .lb-rank {
+      width: 36px;
+    }
+    .lb-rank-medal { font-size: 26px; }
+    .lb-avatar {
+      width: 36px;
+      height: 36px;
+      font-size: 15px;
+    }
+    .lb-name { font-size: 14px; }
+    .lb-meta { font-size: 11px; }
+    .lb-coins-num { font-size: 20px; }
+  }
+
+  /* ==========================================================
      TOP HOME — stats banner, choice cards, duck quest
      ========================================================== */
   .tophome-hero {
@@ -1461,6 +1669,15 @@
         <span class="choice-go">Take today's tests →</span>
       </button>
     </div>
+    
+    <button class="leaderboard-link" onclick="goLeaderboard()">
+      <span class="leaderboard-link-icon">🏆</span>
+      <div class="leaderboard-link-text">
+        <div class="leaderboard-link-title">View Leaderboard</div>
+        <div class="leaderboard-link-sub">See how you rank against everyone on this device</div>
+      </div>
+      <span class="leaderboard-link-arrow">→</span>
+    </button>
   </section>
 
   <!-- ============ REVISION HOME (subject grid) ============ -->
@@ -1525,6 +1742,11 @@
   <!-- ============ QUIZ COMPLETE ============ -->
   <section class="view" id="view-quizdone">
     <div id="quizdone-content"></div>
+  </section>
+
+  <!-- ============ LEADERBOARD ============ -->
+  <section class="view" id="view-leaderboard">
+    <div id="leaderboard-content"></div>
   </section>
 
   <!-- ============ SUBJECT VIEW (topic list) ============ -->
@@ -3983,7 +4205,10 @@ function defaultStats() {
     lastWeekStartDate: null,
     quizzesByDate: {},        // { '2026-05-04': { 'maths': {score, total, perfect, coins, attempts}, ... } }
     revisedSubjects: {},
-    bestScores: {}            // { 'maths': {score, total, perfect, date}, ... } - lifetime best
+    bestScores: {},           // { 'maths': {score, total, perfect, date}, ... } - lifetime best
+    incorrectTotal: 0,        // lifetime count of wrong answers (for leaderboard tiebreak)
+    correctTotal: 0,          // lifetime count of correct answers (informational)
+    questionsAnswered: 0      // lifetime total questions answered
   };
 }
 
@@ -4470,6 +4695,139 @@ function goTestHome() {
   showView('testhome');
 }
 
+/* ==========================================================
+   LEADERBOARD
+   ========================================================== */
+function goLeaderboard() {
+  state.view = 'leaderboard';
+  setBreadcrumb([{ label: 'Leaderboard' }]);
+  renderLeaderboard();
+  showView('leaderboard');
+}
+
+function gatherLeaderboardData() {
+  // Read every user's stats from localStorage and combine with their profile
+  const users = loadUsers();
+  const entries = [];
+  
+  for (const username of Object.keys(users)) {
+    const user = users[username];
+    const statsKey = STATS_PREFIX + username;
+    let stats;
+    try {
+      const raw = localStorage.getItem(statsKey);
+      stats = raw ? { ...defaultStats(), ...JSON.parse(raw) } : defaultStats();
+    } catch (e) {
+      stats = defaultStats();
+    }
+    
+    entries.push({
+      username,
+      displayName: user.displayName,
+      provider: user.provider,
+      coins: stats.coins || 0,
+      streak: stats.streak || 0,
+      incorrectTotal: stats.incorrectTotal || 0,
+      correctTotal: stats.correctTotal || 0,
+      questionsAnswered: stats.questionsAnswered || 0,
+      isCurrentUser: CURRENT_USER && CURRENT_USER.username === username
+    });
+  }
+  
+  // Sort: most coins first; tie-break by FEWEST incorrect answers (more wrong = lower)
+  entries.sort((a, b) => {
+    if (b.coins !== a.coins) return b.coins - a.coins;
+    if (a.incorrectTotal !== b.incorrectTotal) return a.incorrectTotal - b.incorrectTotal;
+    // Final tiebreak: more questions answered overall first (shows more effort)
+    if (b.questionsAnswered !== a.questionsAnswered) return b.questionsAnswered - a.questionsAnswered;
+    return a.displayName.localeCompare(b.displayName);
+  });
+  
+  return entries;
+}
+
+function renderLeaderboard() {
+  const entries = gatherLeaderboardData();
+  
+  let html = `
+    <button class="btn btn-back" onclick="goHome()">← Back to home</button>
+    <h1 class="page-title">Leaderboard 🏆</h1>
+    <p class="page-subtitle">Most duck coins wins! Tied? The one with fewer wrong answers ranks higher.</p>
+  `;
+  
+  if (entries.length === 0) {
+    html += `
+      <div class="leaderboard-empty">
+        <div class="leaderboard-empty-emoji">🦆</div>
+        <h3>Nobody on the board yet</h3>
+        <p>Take some quizzes to earn coins, then come back!</p>
+      </div>
+    `;
+  } else {
+    // Find current user's rank
+    const myRank = entries.findIndex(e => e.isCurrentUser) + 1;
+    
+    if (myRank > 0 && CURRENT_USER) {
+      const totalUsers = entries.length;
+      let rankMsg;
+      if (myRank === 1) rankMsg = `🥇 You're <strong>#1</strong> on the leaderboard!`;
+      else if (myRank === 2) rankMsg = `🥈 You're <strong>#2</strong> — close to the top!`;
+      else if (myRank === 3) rankMsg = `🥉 You're <strong>#3</strong> — on the podium!`;
+      else rankMsg = `You're <strong>#${myRank}</strong> of ${totalUsers}. Keep going!`;
+      
+      html += `<div class="leaderboard-mystatus">${rankMsg}</div>`;
+    }
+    
+    html += `<div class="leaderboard-list">`;
+    
+    entries.forEach((entry, i) => {
+      const rank = i + 1;
+      let rankBadge;
+      if (rank === 1) rankBadge = '<span class="lb-rank-medal">🥇</span>';
+      else if (rank === 2) rankBadge = '<span class="lb-rank-medal">🥈</span>';
+      else if (rank === 3) rankBadge = '<span class="lb-rank-medal">🥉</span>';
+      else rankBadge = `<span class="lb-rank-num">${rank}</span>`;
+      
+      const accuracy = entry.questionsAnswered > 0
+        ? Math.round((entry.correctTotal / entry.questionsAnswered) * 100)
+        : null;
+      
+      const youBadge = entry.isCurrentUser ? '<span class="lb-you-badge">YOU</span>' : '';
+      const initial = entry.displayName.charAt(0).toUpperCase();
+      
+      html += `
+        <div class="leaderboard-row ${entry.isCurrentUser ? 'is-me' : ''} ${rank <= 3 ? 'is-top3' : ''}">
+          <div class="lb-rank">${rankBadge}</div>
+          <div class="lb-avatar">${initial}</div>
+          <div class="lb-info">
+            <div class="lb-name">${entry.displayName} ${youBadge}</div>
+            <div class="lb-meta">
+              ${entry.streak > 0 ? `🔥 ${entry.streak}-day streak · ` : ''}
+              ${accuracy !== null ? `${accuracy}% accuracy · ` : ''}
+              ${entry.incorrectTotal} wrong
+            </div>
+          </div>
+          <div class="lb-coins">
+            <div class="lb-coins-num">${entry.coins}</div>
+            <div class="lb-coins-label">🦆 coins</div>
+          </div>
+        </div>
+      `;
+    });
+    
+    html += `</div>`;
+  }
+  
+  html += `
+    <p class="leaderboard-note">
+      🔒 The leaderboard shows everyone who's signed up on <strong>this device</strong>. 
+      Friends using their own laptops will be on their own boards.
+    </p>
+  `;
+  
+  document.getElementById('leaderboard-content').innerHTML = html;
+}
+
 function openSubject(subjectKey) {
   state.subject = subjectKey;
   state.view = 'subject';
@@ -4932,10 +5290,16 @@ function answerQuiz(idx) {
   q.selected = idx;
   q.showResult = true;
   const current = q.questions[q.index];
-  if (idx === current.correct) {
+  const wasCorrect = idx === current.correct;
+  if (wasCorrect) {
     q.score += 1;
+    STATS.correctTotal = (STATS.correctTotal || 0) + 1;
+  } else {
+    STATS.incorrectTotal = (STATS.incorrectTotal || 0) + 1;
   }
-  q.answers.push({ selected: idx, correct: idx === current.correct });
+  STATS.questionsAnswered = (STATS.questionsAnswered || 0) + 1;
+  saveStats();
+  q.answers.push({ selected: idx, correct: wasCorrect });
   renderQuiz();
 }
 
